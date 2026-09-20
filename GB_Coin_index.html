@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07100a">
+  <title>GB Coin — Mine • Earn • Grow</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{--bg:#060b08;--panel:#0d1711;--line:#1e3827;--green:#27f06b;--text:#effff3;--muted:#8ba493}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at top,#10281a,var(--bg) 55%);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+    .app{max-width:520px;margin:auto;padding:18px 16px 28px}
+    header,.row,nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    header{justify-content:flex-start}
+    header small{display:block;color:var(--muted);font-size:11px}
+    .logo{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#07140b;border:2px solid var(--green);color:var(--green);font-weight:900;box-shadow:0 0 18px #27f06425}
+    .demo,.green{color:var(--green);font-size:11px;margin-left:auto}
+    .welcome{padding:24px 2px 14px}
+    .welcome small,.row small{color:var(--muted);font-size:11px}
+    .welcome h1{font-size:31px;line-height:1.08;margin:8px 0}
+    .welcome em{color:var(--green);font-style:normal}
+    .welcome p{color:#b7c8bc}
+    .card,.panel{background:linear-gradient(145deg,#102017,#0a120d);border:1px solid var(--line);border-radius:20px;padding:17px;margin:12px 0}
+    .card h2{font-size:38px;margin:10px 0 15px}
+    .card h2 small{font-size:15px;color:var(--green)}
+    button{font:inherit;cursor:pointer}
+    .primary,#share{width:100%;border:0;border-radius:13px;background:var(--green);color:#031007;font-weight:800;padding:14px;margin-top:13px}
+    .hint{color:var(--muted);font-size:11px}
+    .row b{font-size:12px}
+    nav{gap:6px;background:#09110c;padding:5px;border:1px solid var(--line);border-radius:14px;margin:16px 0}
+    .tab{flex:1;border:0;background:transparent;color:var(--muted);padding:10px 4px;border-radius:10px;font-size:13px}
+    .tab.active{background:#173a24;color:var(--green)}
+    .hidden{display:none!important}
+    .panel h3{margin:2px 0 12px}
+    .tile,.ref{background:#0a130d;border:1px solid var(--line);border-radius:13px;padding:13px;margin:8px 0}
+    .tile small{display:block;color:var(--muted);margin-top:5px}
+    .ref{overflow-wrap:anywhere;color:#a8c5b1;font-size:12px}
+    .secondary{width:100%;padding:12px;border-radius:10px;background:transparent;border:1px solid var(--line);color:var(--muted);margin-top:12px}
+    footer{text-align:center;color:var(--muted);font-size:10px;padding:18px 0}
+    .coin{font-size:28px;margin-right:6px}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="logo">GB</div>
+    <div><b>GB Coin</b><small>Mine • Earn • Grow</small></div>
+    <span class="demo">● DEMO</span>
+  </header>
+
+  <section class="welcome">
+    <small>WELCOME TO GB COIN</small>
+    <h1>Your coins.<br><em>Your community.</em></h1>
+    <p>Collect demo points, complete tasks and invite friends.</p>
+  </section>
+
+  <section class="card">
+    <div class="row"><small>YOUR DEMO BALANCE</small><small class="green">● Active</small></div>
+    <h2><span id="balance">0</span> <small>GB</small></h2>
+    <div class="row"><small>Mining reward</small><b>+10 GB / tap</b></div>
+    <button class="primary" id="mine">⛏️ Mine GB</button>
+    <p id="msg" class="hint">Tap to collect demo points.</p>
+  </section>
+
+  <nav>
+    <button class="tab active" data-tab="home">Home</button>
+    <button class="tab" data-tab="tasks">Tasks</button>
+    <button class="tab" data-tab="friends">Invite</button>
+    <button class="tab" data-tab="wallet">Wallet</button>
+  </nav>
+
+  <section id="home" class="panel">
+    <h3>Quick actions</h3>
+    <div class="tile">🎁 Daily bonus<small>Coming soon</small></div>
+    <div class="tile">🏆 Leaderboard<small>Coming soon</small></div>
+    <div class="tile">📢 Community<small>Connect your official Telegram channel later</small></div>
+  </section>
+
+  <section id="tasks" class="panel hidden">
+    <h3>Complete tasks</h3>
+    <p>Task rewards are demo points until verified and enabled.</p>
+    <div class="tile">📣 Join GB Coin Telegram<small>Community task • Coming soon</small></div>
+    <div class="tile">📅 Daily check-in<small>Daily task • Coming soon</small></div>
+    <div class="tile">🌐 Follow social channels<small>Social task • Coming soon</small></div>
+    <div class="tile">🤝 Invite friends<small>Referral verification required</small></div>
+  </section>
+
+  <section id="friends" class="panel hidden">
+    <h3>Invite friends</h3>
+    <p>Grow the GB Coin community together.</p>
+    <div id="ref" class="ref">Open this Mini App in Telegram to view your referral ID.</div>
+    <button id="share">👥 Share invite</button>
+    <p class="hint">Tracked referrals and bonuses need a secure backend. This demo does not issue referral rewards.</p>
+  </section>
+
+  <section id="wallet" class="panel hidden">
+    <h3>Wallet</h3>
+    <div class="tile">Demo points only<small>No cash value. Withdrawals are not enabled.</small></div>
+    <button class="secondary" disabled>Withdraw — unavailable</button>
+  </section>
+
+  <footer>GB Coin • Mini App Prototype<br>Demo interface — not a live token or payment service.</footer>
+</main>
+<script>
+(() => {
+  const tg = window.Telegram?.WebApp;
+  try { tg?.ready(); tg?.expand(); } catch(e) {}
+  let balance = 0;
+  document.getElementById('mine').addEventListener('click', () => {
+    balance += 10;
+    document.getElementById('balance').textContent = balance.toLocaleString();
+    document.getElementById('msg').textContent = '+10 demo GB points added. Not withdrawable.';
+  });
+  document.querySelectorAll('.tab').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab === button));
+      document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('hidden', panel.id !== button.dataset.tab));
+    });
+  });
+  const userId = tg?.initDataUnsafe?.user?.id;
+  if (userId) document.getElementById('ref').textContent = 'Telegram user ID: ' + userId + ' (backend required for tracked referrals)';
+  document.getElementById('share').addEventListener('click', () => {
+    const shareUrl = 'https://t.me/share/url?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent('Join GB Coin community!');
+    if (tg?.openTelegramLink) tg.openTelegramLink(shareUrl);
+    else if (navigator.share) navigator.share({title:'GB Coin', text:'Join GB Coin community!', url:location.href}).catch(()=>{});
+    else document.getElementById('ref').textContent = 'Open this Mini App in Telegram to use Telegram sharing.';
+  });
+})();
+</script>
+</body>
+</html>
